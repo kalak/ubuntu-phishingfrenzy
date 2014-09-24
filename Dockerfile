@@ -44,6 +44,8 @@ RUN sudo chown -R www-data:www-data /var/www/phishing-frenzy/
 
 RUN cd /var/www/phishing-frenzy/ && /etc/init.d/mysql start && bundle exec rake templates:load
 
+RUN chown -R www-data:www-data /etc/apache2/sites-available/
+
 ADD /startup.sh /startup.sh
 
 RUN chmod +x /startup.sh
