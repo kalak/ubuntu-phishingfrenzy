@@ -3,11 +3,15 @@ FROM ubuntu:latest
 MAINTAINER b00stfr3ak
 
 RUN apt-get update
-RUN apt-get -y upgrade
+RUN apt-get -y install software-properties-common
+RUN apt-add-repository ppa:brightbox/ruby-ng
+RUN apt-get update
+run apt-get -y upgrade
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
  libcurl4-openssl-dev libssl-dev zlib1g-dev apache2-threaded-dev \
  libapr1-dev libaprutil1-dev php5 apache2 mysql-server git curl \
- ruby1.9.1 ruby1.9.1-dev build-essential
+ ruby2.1 ruby2.1-dev build-essential
+
 
 ADD /pf.conf /etc/apache2/pf.conf
 
@@ -47,6 +51,8 @@ RUN cd /var/www/phishing-frenzy/ && /etc/init.d/mysql start && bundle exec rake 
 RUN chown -R www-data:www-data /etc/apache2/sites-available/
 
 RUN chown -R www-data:www-data /etc/apache2/sites-enabled/
+
+RUN chown -R www-data:www-data /var/www/phishing-frenzy/public/uploads/
 
 ADD /startup.sh /startup.sh
 
