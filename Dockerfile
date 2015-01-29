@@ -54,6 +54,8 @@ RUN chown -R www-data:www-data /etc/apache2/sites-enabled/
 
 RUN chown -R www-data:www-data /var/www/phishing-frenzy/public/uploads/
 
+RUN chmod -R 755 /var/www/phishing-frenzy/public/uploads/
+
 ADD /startup.sh /startup.sh
 
 RUN chmod +x /startup.sh
