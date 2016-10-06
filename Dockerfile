@@ -19,7 +19,7 @@ RUN git clone https://github.com/pentestgeek/phishing-frenzy.git /var/www/phishi
 RUN touch /etc/apache2/httpd.conf
 RUN chown www-data:www-data /etc/apache2/httpd.conf
 
-RUN gem install --no-rdoc --no-ri rails
+RUN gem install --no-rdoc --no-ri rails -v 4.2.7.1
 RUN gem install --no-rdoc --no-ri passenger -v 5.0.6
 
 RUN passenger-install-apache2-module
